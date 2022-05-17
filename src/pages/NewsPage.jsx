@@ -4,6 +4,7 @@ import { CreatePostForm }           from '../components/CreatePostForm';
 import { NewsList }                 from '../components/NewsList';
 import { NewsSearch }               from '../components/NewsSearch';
 import { loadNewsRequest }          from '../globalState/reducers/loadNewsReducer';
+import './newsPage.scss'
 
 export function NewsPage() {
     const { news } = useSelector(state => state.news);
@@ -13,10 +14,10 @@ export function NewsPage() {
     useEffect(() => {dispatch(loadNewsRequest())}, [dispatch])
 
     return (
-        <>
+        <div className={'news-page'}>
             <NewsSearch/>
             <CreatePostForm/>
             <NewsList newsList={news}/>
-        </>
+        </div>
     )
 }
