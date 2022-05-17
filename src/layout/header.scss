@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  a:hover {
+    background: beige;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+
+    i {
+      margin-right: 5px;
+    }
+  }
+
+}

@@ -1,0 +1,46 @@
+.news-card {
+  border: 1px solid lightgrey;
+  background: white;
+  border-radius: 4px;
+  padding: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  p {
+    font-size: 12px
+  }
+
+  p:last-child {
+    text-align: right
+  }
+
+  &__header, &__footer {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__body {
+    height: 105px;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+  }
+
+  &__footer {
+    button {
+      cursor: pointer;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      color: white;
+      font-weight: 600;
+      background: #f8c233;
+    }
+    button:last-child {
+      background: #e93f37;
+    }
+
+  }
+}

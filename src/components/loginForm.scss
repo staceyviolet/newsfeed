@@ -1,0 +1,31 @@
+.login-form {
+  &__input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    label {
+      font-weight: 600;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    input {
+      border: 1px #d3d3d3 solid;
+      border-radius: 4px;
+      background: #f8f8f8;
+      padding: 5px 10px;
+      line-height: 24px;
+      color: #555555;
+    }
+  }
+
+  &__checkbox {
+    label {
+      font-weight: 600;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+  }
+
+}
