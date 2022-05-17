@@ -1,14 +1,34 @@
 .news-search {
-  width: 100%;
-  margin-bottom: 1rem;
+  margin: 1rem;
   box-sizing: border-box;
+  //background: white;
+  //padding: 1rem;
+  //border-radius: 4px;
+  //border: 1px solid lightgrey;
 
-  input {
+  &__input {
     width: 100%;
     box-sizing: border-box;
     border-radius: 20px;
     height: 40px;
     border: 1px solid lightgrey;
-    padding: 0 20px
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 22fr 2fr;
+    background: #f8f8f8;
+
+    input {
+      border: none;
+      background: transparent;
+    }
+
+    i {
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      color: #555555;
+      font-size: 18px;
+    }
   }
 }

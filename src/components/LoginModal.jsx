@@ -1,6 +1,6 @@
-import { useEffect }    from 'react';
-import { useDispatch }  from 'react-redux';
-import { loginRequest } from '../globalState/reducers/authorisationReducer';
+import { useEffect }                from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginRequest }             from '../globalState/reducers/authorisationReducer';
 import { LoginForm }    from './LoginForm';
 import './loginModal.scss'
 
@@ -30,16 +30,14 @@ export const LoginModal = ({ visible, onClose }) => {
             <div className="login-modal__main" onClick={e => e.stopPropagation()}>
                 <div className="login-modal__header">
                     <h3>Login</h3>
-                    <span className="modal-close" onClick={onClose}>&times;</span>
+                    <button className="login-modal__close"
+                            onClick={onClose}>
+                        <i className={'fa fa-times'}></i>
+                    </button>
                 </div>
 
-                <div className="login-modal__body">
-                    <LoginForm onSubmit={handleSubmit}/>
-                </div>
-
-                <div className="login-modal__footer">
-                    <button onClick={onClose}>Cancel</button>
-                    <button type={'submit'} onClick={handleSubmit}>Login</button>
+                <div className="login-modal__form">
+                    <LoginForm onSubmit={handleSubmit} onClose={onClose}/>
                 </div>
             </div>
         </div>

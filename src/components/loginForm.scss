@@ -10,7 +10,7 @@
       margin-bottom: 7px;
     }
 
-    input {
+    input, textarea {
       border: 1px #d3d3d3 solid;
       border-radius: 4px;
       background: #f8f8f8;
@@ -18,13 +18,38 @@
       line-height: 24px;
       color: #555555;
     }
+    ::placeholder {
+      font-family: unset !important;
+    }
+
+
   }
 
   &__checkbox {
+    margin-bottom: 20px;
     label {
       font-weight: 600;
       font-size: 12px;
-      margin-bottom: 7px;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+      cursor: pointer;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      color: white;
+      font-weight: 600;
+      background: #f8c233;
+    }
+
+    button:last-child {
+      background: #e93f37;
     }
   }
 

@@ -1,8 +1,8 @@
+import './footer.scss'
+
 export function Footer() {
     return (
-        <footer>
-
-        </footer>
+        <footer className={'footer'}>{`Copyright `}<i className={'fa fa-copyright'}></i></footer>
     )
 }
 

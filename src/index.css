@@ -5,8 +5,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("/public/svg/background.svg") bottom no-repeat;
-  height: 100vh;
+  background: url("/public/svg/background.svg") bottom no-repeat fixed;
+
+}
+
+#root {
+  height: 100%;
+}
+
+h4 {
+  margin-top: 0;
 }
 
 code {

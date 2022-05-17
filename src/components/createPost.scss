@@ -1,0 +1,30 @@
+.create-post {
+  background: white;
+  padding: 20px;
+  display: grid;
+  margin: 1rem;
+  border-radius: 4px;
+
+  &__send {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      background: none;
+      cursor: pointer;
+      border: none;
+      background: #08b95b;
+      font-weight: 600;
+      color: white;
+      border-radius: 4px;
+      padding: 10px 20px;
+    }
+  }
+
+}
+
+@media screen and (min-width: 768px) {
+  .create-post {
+    margin: 20px 0;
+  }
+}

@@ -15,6 +15,12 @@
     animation-duration: 300ms;
   }
 
+  &__close {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
 
   &__main {
     width: 100%;
@@ -34,32 +40,13 @@
     animation-duration: 0.5s;
   }
 
-  &__header,
-  &__footer {
+  &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    h3 {
-
-    }
   }
 
-  &__header, &__body,
-  &__footer {
+  &__header, &__form{
     margin-bottom: 20px;
-  }
-  &__footer {
-    button {
-      cursor: pointer;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      color: white;
-      font-weight: 600;
-      background: #f8c233;
-    }
-    button:last-child {
-      background: #e93f37;
-    }
   }
 }

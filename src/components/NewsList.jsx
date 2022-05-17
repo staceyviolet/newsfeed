@@ -11,13 +11,13 @@ export function NewsList({ newsList }) {
     }
 
     if (loading) {
-        return <i className={'fa fa-spinner'}></i>
+        return <i className={'fa fa-circle-o-notch fa-spin'}></i>
     }
 
     if (isAuthorised) {
         return (
             <div className={'news-list'}>
-                {newsList.map(item => {return <NewsCard key={Math.random()} content={item}/>})}
+                {newsList.map(item => {return <NewsCard key={item.id} content={item} isAuthorised={isAuthorised} isAdmin={loginForm.isAdmin}/>})}
             </div>
         )
     }
@@ -25,7 +25,12 @@ export function NewsList({ newsList }) {
     return (
         <div className={'news-list'}>
             {newsList.filter(item => item.isApproved)
-                     .map(item => {return <NewsCard key={Math.random()} content={item} isAdmin={loginForm.isAdmin}/>})}
+                     .map(item => {
+                         return <NewsCard key={Math.random()}
+                                          content={item}
+                                          isAuthorised={isAuthorised}
+                                          isAdmin={loginForm.isAdmin}/>
+                     })}
         </div>
     )
 }

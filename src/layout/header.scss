@@ -1,7 +1,9 @@
 .header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
   align-items: center;
+  padding: 20px 30px;
 
   a {
     padding: 20px;
@@ -11,10 +13,10 @@
     font-weight: 600;
   }
   a:hover {
-    background: beige;
+    color: #555555;
   }
 
-  button {
+  &__button {
     cursor: pointer;
     border: none;
     background: transparent;

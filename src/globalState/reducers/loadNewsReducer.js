@@ -38,6 +38,30 @@ export const loadNewsReducer = createSlice({
                                                        const search = action.payload;
                                                        return state = { ...state, search }
                                                    },
+                                                   deletePostRequest(state) {
+                                                       return state = {
+                                                           ...state,
+                                                           loading: true,
+                                                           error: null,
+                                                       };
+                                                   },
+                                                   deletePostFailure(state, action) {
+                                                       const error = action.payload;
+                                                       return state = {
+                                                           ...state,
+                                                           loading: false,
+                                                           error,
+                                                       };
+                                                   },
+                                                   deletePostSuccess(state, action) {
+                                                       const news = action.payload;
+                                                       return state = {
+                                                           ...state,
+                                                           news,
+                                                           loading: false,
+                                                           error: null,
+                                                       };
+                                                   },
                                                }
                                            })
 

@@ -1,6 +1,6 @@
 export function HeaderButton({ onClick, icon, title }) {
     return (
-        <button onClick={onClick}>
+        <button className={'header__button'} onClick={onClick}>
             <i className={`fa ${icon}`}></i>
             {title}
         </button>

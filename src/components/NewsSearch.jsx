@@ -14,8 +14,12 @@ export function NewsSearch() {
 
     return (
         <form className={'news-search'}>
-            <input placeholder="Поиск по новостям" value={search}
-                   onChange={handleChangeSearchField}/>
+            <h4>Поиск новостей</h4>
+            <div className={'news-search__input'}>
+                <input placeholder="Поиск по новостям" value={search}
+                       onChange={handleChangeSearchField}/>
+                <i className={'fa fa-search'}></i>
+            </div>
         </form>
     )
 }

@@ -5,6 +5,7 @@
   padding: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0 1rem 1rem;
 
   p {
     font-size: 12px
@@ -15,7 +16,6 @@
   }
 
   &__header, &__footer {
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,8 +24,8 @@
   &__body {
     height: 105px;
     overflow: hidden;
-    display: block;
     text-overflow: ellipsis;
+    text-align: left !important;
   }
 
   &__footer {
@@ -36,11 +36,21 @@
       border-radius: 4px;
       color: white;
       font-weight: 600;
-      background: #f8c233;
     }
+
+    button:first-child {
+      background: #08b95b;
+    }
+
     button:last-child {
       background: #e93f37;
     }
 
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .news-card {
+    margin: 0;
   }
 }

@@ -2,15 +2,23 @@ import { applyMiddleware, configureStore }    from '@reduxjs/toolkit';
 import { composeWithDevTools }                from 'redux-devtools-extension';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import {
-    changeSearchEpic, loadNewsEpic, loginEpic,
+    approvePostEpic,
+    changeSearchEpic, deletePostEpic, loadNewsEpic, loginEpic, logoutEpic, publishPostEpic,
 } from '../epics';
+import { addPostReducer }                     from '../reducers/addPostReducer';
+import { approvePostReducer }                 from '../reducers/apprivePostReducer';
 import { authorisationReducer }               from '../reducers/authorisationReducer';
+import { deletePostReducer }                  from '../reducers/deletePostReducer';
 import { loadNewsReducer }                    from '../reducers/loadNewsReducer';
 
 const epic = combineEpics(
     changeSearchEpic,
     loadNewsEpic,
-    loginEpic
+    publishPostEpic,
+    deletePostEpic,
+    approvePostEpic,
+    loginEpic,
+    logoutEpic
 );
 
 const epicMiddleware = createEpicMiddleware();
@@ -21,6 +29,9 @@ const composedEnhancers = composeWithDevTools(...enhancers)
 export const store = configureStore({
                                         reducer: {
                                             news: loadNewsReducer.reducer,
+                                            post: addPostReducer.reducer,
+                                            deletePost: deletePostReducer,
+                                            approvePost: approvePostReducer,
                                             authorisation: authorisationReducer.reducer,
                                         },
                                         // middleware: [epicMiddleware],
