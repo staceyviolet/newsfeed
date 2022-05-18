@@ -35,7 +35,7 @@ export function LoginForm({ onClose }) {
             </div>
             <div className={'login-form__input'}>
                 <label htmlFor={'password'}>Пароль</label>
-                <input name={'password'} value={password} placeholder={'Введите пароль'} onChange={handleFormChange}
+                <input name={'password'} type={'password'} value={password} placeholder={'Введите пароль'} onChange={handleFormChange}
                        required/>
             </div>
             <div className={'login-form__checkbox'}>
