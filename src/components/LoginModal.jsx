@@ -16,13 +16,6 @@ export const LoginModal = ({ visible, onClose }) => {
         return () => document.removeEventListener('keydown', onKeydown)
     })
 
-    const dispatch = useDispatch()
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        dispatch(loginRequest())
-    }
-
     if (!visible) return null
 
     return (
@@ -37,7 +30,7 @@ export const LoginModal = ({ visible, onClose }) => {
                 </div>
 
                 <div className="login-modal__form">
-                    <LoginForm onSubmit={handleSubmit} onClose={onClose}/>
+                    <LoginForm onClose={onClose}/>
                 </div>
             </div>
         </div>

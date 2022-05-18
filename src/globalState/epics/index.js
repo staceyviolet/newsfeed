@@ -1,14 +1,14 @@
-import { map, debounceTime, filter, delay }                           from 'rxjs/operators';
-import { LOGIN, NEWS, PASSWORD }                                      from '../../mockData/news';
-import { publishPostFailure, publishPostRequest, publishPostSuccess } from '../reducers/addPostReducer';
-import { approvePostFailure, approvePostRequest, approvePostSuccess } from '../reducers/apprivePostReducer';
+import { map, debounceTime, filter, delay }                             from 'rxjs/operators';
+import { publishPostFailure, publishPostRequest, publishPostSuccess }   from '../reducers/addPostReducer';
+import { approvePostFailure, approvePostRequest, approvePostSuccess }   from '../reducers/apprivePostReducer';
 import {
     loginFailure, loginRequest, loginSuccess, logoutRequest, logoutSuccess,
-}                                                                     from '../reducers/authorisationReducer';
-import { deletePostFailure, deletePostRequest, deletePostSuccess }    from '../reducers/deletePostReducer';
+}                                                                       from '../reducers/authorisationReducer';
+import { deletePostFailure, deletePostRequest, deletePostSuccess }      from '../reducers/deletePostReducer';
 import {
     changeSearchField, loadNewsFailure, loadNewsRequest, loadNewsSuccess
-}                                                                     from '../reducers/loadNewsReducer';
+}                                                                       from '../reducers/loadNewsReducer';
+import { USER_LOGIN, NEWS, USER_PASSWORD, ADMIN_LOGIN, ADMIN_PASSWORD } from '../../mockData/news';
 
 export const changeSearchEpic = action$ => action$.pipe(
     filter(changeSearchField.match),
@@ -18,10 +18,19 @@ export const changeSearchEpic = action$ => action$.pipe(
     map(o => loadNewsRequest(o)))
 
 export const loginEpic = (action$, state$) => action$.pipe(
-    filter(loginRequest.match),
-    map(() => state$.value.authorisation.loginForm.login === LOGIN && state$.value.authorisation.loginForm.password === PASSWORD),
-    delay(1000),
-    map((o) => o === true ? loginSuccess() : loginFailure('Login & Password are incorrect')));
+        filter(loginRequest.match),
+        map(o => o.payload),
+        map((o) => {
+            return {
+                isAdmin: o,
+                loginSuccess: o ? state$.value.authorisation.loginForm.login === ADMIN_LOGIN && state$.value.authorisation.loginForm.password === ADMIN_PASSWORD
+                                : state$.value.authorisation.loginForm.login === USER_LOGIN && state$.value.authorisation.loginForm.password === USER_PASSWORD
+            }
+        }),
+        delay(1000),
+        map((o) => o.loginSuccess === true ? loginSuccess(o.isAdmin) : loginFailure('Login & Password are incorrect'))
+    )
+;
 
 export const logoutEpic = action$ => action$.pipe(
     filter(logoutRequest.match),

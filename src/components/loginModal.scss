@@ -24,10 +24,10 @@
 
   &__main {
     width: 100%;
+    box-sizing: border-box;
     max-width: 550px;
     background: white;
     position: relative;
-    max-height: calc(100vh - 40px);
     border-radius: 4px;
     padding: 1.5rem;
     display: flex;

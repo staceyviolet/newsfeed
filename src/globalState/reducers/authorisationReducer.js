@@ -2,12 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const token = JSON.parse(window.localStorage.getItem('X-Access-Token'))
 const loginForm = JSON.parse(window.localStorage.getItem('loginForm'))
+const admin = JSON.parse(window.localStorage.getItem('isAdmin'))
 
 const initialState = {
     isAuthorised: !!token,
-    loginForm: loginForm ? loginForm : {
-        isAdmin: false,
-        login: '',
+    loginForm: {
+        isAdmin: !!admin,
+        login: loginForm ?? '',
         password: '',
     },
     showModal: false,
@@ -48,11 +49,14 @@ export const authorisationReducer = createSlice({
                                                                 error,
                                                             };
                                                         },
-                                                        loginSuccess(state) {
+                                                        loginSuccess(state, action) {
+                                                            const isAdmin = action.payload
                                                             window.localStorage.setItem('X-Access-Token', Math.random().toString());
-                                                            window.localStorage.setItem('loginForm', JSON.stringify(state.loginForm));
+                                                            window.localStorage.setItem('loginForm', JSON.stringify(state.loginForm.login));
+                                                            window.localStorage.setItem('isAdmin', JSON.stringify(isAdmin));
                                                             return state = {
                                                                 ...state,
+                                                                loginForm: { ...state.loginForm, isAdmin: isAdmin },
                                                                 showModal: false,
                                                                 isAuthorised: true,
                                                                 loading: false,
@@ -76,6 +80,7 @@ export const authorisationReducer = createSlice({
                                                         logoutSuccess(state) {
                                                             window.localStorage.removeItem('X-Access-Token');
                                                             window.localStorage.removeItem('loginForm');
+                                                            window.localStorage.removeItem('isAdmin');
 
                                                             return state = {
                                                                 ...initialState

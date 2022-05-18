@@ -4,6 +4,8 @@
   display: grid;
   margin: 1rem;
   border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%;
 
   &__send {
     display: flex;

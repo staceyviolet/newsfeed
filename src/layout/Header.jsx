@@ -9,7 +9,7 @@ import './header.scss'
 import { changeShowModal, logoutRequest } from '../globalState/reducers/authorisationReducer';
 
 export function Header() {
-    const { isAuthorised, showModal } = useSelector(state => state.authorisation);
+    const { isAuthorised, showModal, loading } = useSelector(state => state.authorisation);
     const dispatch = useDispatch()
 
     const handleLoginModalOpen = (e) => {
@@ -29,7 +29,7 @@ export function Header() {
         <header className={'header'}>
             <Logo/>
             <TopMenu/>
-            {isAuthorised ? <HeaderButton title={'Logout'} icon={'fa-sign-out'} onClick={handleLogout}/>
+            {isAuthorised ? <HeaderButton title={'Logout'} icon={loading ? 'fa-circle-o-notch fa-spin' : 'fa-sign-out'} onClick={handleLogout}/>
                           : <HeaderButton title={'Login'} icon={'fa-sign-in'} onClick={handleLoginModalOpen}/>}
 
             <LoginModal visible={showModal} onClose={() =>dispatch(changeShowModal(false))}/>

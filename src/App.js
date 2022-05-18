@@ -7,7 +7,7 @@ import { Footer }        from './layout/Footer';
 import { Header }        from './layout/Header';
 import { HomePage }      from './pages/HomePage';
 import { NewsPage }      from './pages/NewsPage';
-import './assets/fontawesome-free-6.1.1-web/css/all.css'
+import './assets/font-awesome-4.7.0/css/font-awesome.css'
 
 function App() {
     return (
