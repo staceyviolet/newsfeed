@@ -5,6 +5,8 @@ const initialState = {
     text: '',
     creationDate: '',
     isApproved: false,
+    loading: false,
+    error: null
 };
 
 export const addPostReducer = createSlice({
@@ -15,7 +17,7 @@ export const addPostReducer = createSlice({
                                                       const { name, value } = action.payload;
                                                       return state = { ...state, [name]: value }
                                                   },
-                                                  publishPostRequest(state) {
+                                                  publishPostRequest(state, action) {
                                                       return state = {
                                                           ...state,
                                                           loading: true,
@@ -29,12 +31,11 @@ export const addPostReducer = createSlice({
                                                           error,
                                                       };
                                                   },
-                                                  publishPostSuccess(state) {
+                                                  publishPostSuccess(state, action) {
+                                                      const news = action.payload
+                                                      window.localStorage.setItem('news', JSON.stringify(news));
                                                       return state = {
-                                                          ...state,
-                                                          isAuthorised: true,
-                                                          loading: false,
-                                                          error: null
+                                                          ...initialState,
                                                       };
                                                   }
                                               }
@@ -43,5 +44,6 @@ export const addPostReducer = createSlice({
 export const {
     changePostDetails,
     publishPostRequest,
-    publishPostFailure, publishPostSuccess
+    publishPostFailure,
+    publishPostSuccess
 } = addPostReducer.actions

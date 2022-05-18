@@ -30,27 +30,26 @@ export function LoginForm({ onClose }) {
     return (
         <form className={'login-form'} onSubmit={handleSubmit}>
             <div className={'login-form__input'}>
-                <label htmlFor={'login'}>Login</label>
-                <input name={'login'} value={login} placeholder={'Enter login'} onChange={handleFormChange} required/>
+                <label htmlFor={'login'}>Логин</label>
+                <input name={'login'} value={login} placeholder={'Введите логин'} onChange={handleFormChange} required/>
             </div>
             <div className={'login-form__input'}>
-                <label htmlFor={'password'}>Password</label>
-                <input name={'password'} value={password} placeholder={'Enter Password'} onChange={handleFormChange}
+                <label htmlFor={'password'}>Пароль</label>
+                <input name={'password'} value={password} placeholder={'Введите пароль'} onChange={handleFormChange}
                        required/>
             </div>
             <div className={'login-form__checkbox'}>
                 <input type={'checkbox'} name={'isAdmin'} checked={isAdmin} onChange={handleCheckboxCheck}/>
-                <label htmlFor={'isAdmin'}>I am admin</label>
-
+                <label htmlFor={'isAdmin'}>{` Я администратор`}</label>
             </div>
 
             {error && <Error message={error}/>}
 
             <div className="login-form__footer">
-                <button onClick={onClose}>Cancel</button>
+                <button onClick={onClose}>Отмена</button>
                 <button type={'submit'} onClick={handleSubmit}>
                     {loading && <i className={'fa fa-circle-o-notch fa-spin'}></i>}
-                    {` Login`}
+                    {` Войти`}
                 </button>
             </div>
         </form>

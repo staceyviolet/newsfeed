@@ -3,9 +3,8 @@ import { useDispatch, useSelector }              from 'react-redux';
 import { changePostDetails, publishPostRequest } from '../globalState/reducers/addPostReducer';
 
 export function CreatePostForm() {
-
     const { isAuthorised, loginForm } = useSelector(state => state.authorisation);
-    const { title, text } = useSelector(state => state.post);
+    const { title, text, loading, error } = useSelector(state => state.post);
 
     const dispatch = useDispatch()
 
@@ -41,7 +40,11 @@ export function CreatePostForm() {
             </div>
 
             <div className={'create-post__send'}>
-                <button onClick={handleSubmit}>{`Опубликовать `}<i className={'fa fa-paper-plane'}></i></button>
+                <button onClick={handleSubmit}>{`Опубликовать `}
+                    {loading ? <i className={'fa fa-circle-o-notch fa-spin'}></i>
+                             : <i className={'fa fa-paper-plane'}></i>}
+
+                </button>
             </div>
         </form>
     )

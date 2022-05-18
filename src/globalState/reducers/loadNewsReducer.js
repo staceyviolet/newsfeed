@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+const news = JSON.parse(window.localStorage.getItem('news'))
 
 const initialState = {
-    news: [],
+    news: !!news ? news : [],
     loading: false,
     error: null,
     search: ''
@@ -28,6 +29,8 @@ export const loadNewsReducer = createSlice({
                                                    },
                                                    loadNewsSuccess(state, action) {
                                                        const news = action.payload;
+                                                       window.localStorage.setItem('news', JSON.stringify(news));
+
                                                        return state = {
                                                            ...state,
                                                            news,

@@ -30,8 +30,8 @@ export const store = configureStore({
                                         reducer: {
                                             news: loadNewsReducer.reducer,
                                             post: addPostReducer.reducer,
-                                            deletePost: deletePostReducer,
-                                            approvePost: approvePostReducer,
+                                            deletePost: deletePostReducer.reducer,
+                                            approvePost: approvePostReducer.reducer,
                                             authorisation: authorisationReducer.reducer,
                                         },
                                         // middleware: [epicMiddleware],

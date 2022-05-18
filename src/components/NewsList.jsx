@@ -1,13 +1,19 @@
-import { useSelector } from 'react-redux';
-import { Error }       from './Error';
-import { Loader }      from './Loader';
-import { NewsCard }    from './NewsCard';
+import { useEffect }                from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadNewsRequest }          from '../globalState/reducers/loadNewsReducer';
+import { Error }                    from './Error';
+import { Loader }                   from './Loader';
+import { NewsCard }                 from './NewsCard';
 
 import './newsList.scss'
 
 export function NewsList() {
     const { isAuthorised, loginForm } = useSelector(state => state.authorisation);
     const { news, loading, error } = useSelector(state => state.news);
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {dispatch(loadNewsRequest())}, [dispatch])
 
     if (loading) {
         return <Loader/>

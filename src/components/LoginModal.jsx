@@ -1,7 +1,5 @@
-import { useEffect }    from 'react';
-import { useDispatch }  from 'react-redux';
-import { loginRequest } from '../globalState/reducers/authorisationReducer';
-import { LoginForm }    from './LoginForm';
+import { useEffect } from 'react';
+import { LoginForm } from './LoginForm';
 import './loginModal.scss'
 
 export const LoginModal = ({ visible, onClose }) => {
@@ -22,7 +20,7 @@ export const LoginModal = ({ visible, onClose }) => {
         <div className="login-modal__background" onClick={onClose}>
             <div className="login-modal__main" onClick={e => e.stopPropagation()}>
                 <div className="login-modal__header">
-                    <h3>Login</h3>
+                    <h3>Вход</h3>
                     <button className="login-modal__close"
                             onClick={onClose}>
                         <i className={'fa fa-times'}></i>

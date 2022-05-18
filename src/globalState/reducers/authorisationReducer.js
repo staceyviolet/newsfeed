@@ -83,7 +83,8 @@ export const authorisationReducer = createSlice({
                                                             window.localStorage.removeItem('isAdmin');
 
                                                             return state = {
-                                                                ...initialState
+                                                                ...initialState,
+                                                                isAuthorised: false,
                                                             };
                                                         }
                                                     }
