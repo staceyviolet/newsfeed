@@ -4,9 +4,8 @@ import { HeaderButton }                   from '../components/HeaderButton';
 import { LoginModal }                     from '../components/LoginModal';
 import { Logo }                           from '../components/Logo';
 import { TopMenu }                        from '../components/TopMenu';
-
-import './header.scss'
 import { changeShowModal, logoutRequest } from '../globalState/reducers/authorisationReducer';
+import './header.scss'
 
 export function Header() {
     const { isAuthorised, showModal, loading } = useSelector(state => state.authorisation);
@@ -14,9 +13,8 @@ export function Header() {
 
     const handleLoginModalOpen = (e) => {
         e.preventDefault()
-        dispatch(changeShowModal({showModal: !showModal}))
+        dispatch(changeShowModal({ showModal: !showModal }))
     }
-
 
     const handleLogout = (e) => {
         e.preventDefault()
@@ -29,10 +27,11 @@ export function Header() {
         <header className={'header'}>
             <Logo/>
             <TopMenu/>
-            {isAuthorised ? <HeaderButton title={'Logout'} icon={loading ? 'fa-circle-o-notch fa-spin' : 'fa-sign-out'} onClick={handleLogout}/>
-                          : <HeaderButton title={'Login'} icon={'fa-sign-in'} onClick={handleLoginModalOpen}/>}
+            {isAuthorised ? <HeaderButton title={'Выйти'} icon={loading ? 'fa-circle-o-notch fa-spin' : 'fa-sign-out'}
+                                          onClick={handleLogout}/>
+                          : <HeaderButton title={'Войти'} icon={'fa-sign-in'} onClick={handleLoginModalOpen}/>}
 
-            <LoginModal visible={showModal} onClose={() =>dispatch(changeShowModal(false))}/>
+            <LoginModal visible={showModal} onClose={() => dispatch(changeShowModal(false))}/>
         </header>
     )
 }

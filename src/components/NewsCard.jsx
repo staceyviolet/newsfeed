@@ -1,61 +1,34 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { approvePostRequest }       from '../globalState/reducers/apprivePostReducer';
-import { deletePostRequest }        from '../globalState/reducers/deletePostReducer';
+import { useState }       from 'react';
+import { NewsCardFooter } from './NewsCardFooter';
+
 import './newsCard.scss'
 
-export function NewsCard({ content, isAdmin, isAuthorised }) {
-    const { loading: deleteLoading, error: deleteError } = useSelector(state => state.deletePost);
-    const { loading: approveLoading, error: approveError } = useSelector(state => state.approvePost);
-
+export function NewsCard({ content }) {
     const date = new Date(content.creationDate * 1000)
-    const dateTime = `${date.toLocaleDateString('ru-RU')} ${date.toLocaleTimeString()}`
+    const dateTime = `${date.toLocaleDateString('ru-RU')} ${date.getHours()}:${date.getMinutes()}`
 
-    const dispatch = useDispatch()
+    const text = content.text.substring(0, 500).concat('...')
+    const textFull = content.text
 
-    const handleDelete = (id) => {
-        dispatch(deletePostRequest(id))
-    }
-
-    const handleApprove = (id) => {
-        dispatch(approvePostRequest(id))
-    }
+    const [showMore, setShowMore] = useState(false)
 
     return (
         <div className={'news-card'}>
             <div className={'news-card__header'}>
-                <h4>{content.title}</h4>
-                <p>{dateTime}</p>
+                <div className={'news-card__header-title'}>{content.title}</div>
+                <div className={'news-card__header-date'}>{dateTime}</div>
             </div>
-            <p className={'news-card__body'}>{content.text}</p>
 
-            {isAdmin &&
-                <div className={'news-card__footer'}>
-                    {content.isApproved ? <p><i className={'fa fa-check'}></i>{` Одобрено`}</p>
-                                        :
-                     <button onClick={() => handleApprove(content.id)}>
-                         {approveLoading ? <i className={'fa fa-circle-o-notch fa-spin'}></i>
-                                         : <i className={'fa fa-check'}></i>}
-                         {` Одобрить`}
-                     </button>
-                    }
-                    <button onClick={() => handleDelete(content.id)}>
-                        {deleteLoading ? <i className={'fa fa-circle-o-notch fa-spin'}></i>
-                                        : <i className={'fa fa-trash'}></i>}
-                        {` Удалить`}</button>
-                </div>
-            }
-            {isAuthorised && !isAdmin &&
-                <div className={'news-card__footer'}>
-                    {content.isApproved ? <p><i className={'fa fa-check'}></i>{` Одобрено`}</p>
-                                        : <p><i className={'fa fa-question'}></i>{` Ожидает одобрения`}</p>
-                    }
-                    <button onClick={() => handleDelete(content.id)}>
-                        {deleteLoading ? <i className={'fa fa-circle-o-notch fa-spin'}></i>
-                                       : <i className={'fa fa-trash'}></i>}
-                        {` Удалить`}</button>
-                </div>
+            <div className={`news-card__body`}>
+                <span className={`news-card__body-text`}>{!showMore ? text : textFull}</span>
+                {textFull.length > 500 && <span className={'news-card__body-collapse'}
+                                                onClick={() => setShowMore(!showMore)}>
+                                                {showMore ? `свернуть` : `читать дальше`}
+                                                </span>
+                }
+            </div>
 
-            }
+            <NewsCardFooter content={content}/>
         </div>
     )
 }

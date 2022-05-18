@@ -1,6 +1,7 @@
-import { map, debounceTime, filter, delay }                           from 'rxjs/operators';
-import { publishPostFailure, publishPostRequest, publishPostSuccess } from '../reducers/addPostReducer';
-import { approvePostFailure, approvePostRequest, approvePostSuccess } from '../reducers/apprivePostReducer';
+import { merge, of }                                                    from 'rxjs';
+import { map, debounceTime, filter, delay, mergeMap, catchError }       from 'rxjs/operators';
+import { publishPostFailure, publishPostRequest, publishPostSuccess }   from '../reducers/addPostReducer';
+import { approvePostFailure, approvePostRequest, approvePostSuccess }   from '../reducers/apprivePostReducer';
 import {
     loginFailure, loginRequest, loginSuccess, logoutRequest, logoutSuccess,
 }                                                                       from '../reducers/authorisationReducer';
@@ -21,10 +22,12 @@ export const loginEpic = (action$, state$) => action$.pipe(
         filter(loginRequest.match),
         map(o => o.payload),
         map((o) => {
+            const login = state$.value.authorisation.loginForm.login
+            const password = state$.value.authorisation.loginForm.password
             return {
                 isAdmin: o,
-                loginSuccess: o ? state$.value.authorisation.loginForm.login === ADMIN_LOGIN && state$.value.authorisation.loginForm.password === ADMIN_PASSWORD
-                                : state$.value.authorisation.loginForm.login === USER_LOGIN && state$.value.authorisation.loginForm.password === USER_PASSWORD
+                loginSuccess: o ? login === ADMIN_LOGIN && password === ADMIN_PASSWORD
+                                : login === USER_LOGIN && password === USER_PASSWORD
             }
         }),
         delay(1000),
@@ -43,16 +46,21 @@ export const publishPostEpic = (action$, state$) => action$.pipe(
     map(() => {
         const title = state$.value.post.title
         const text = state$.value.post.text
-        const newNews = [...NEWS, {
-            id: NEWS[NEWS.length - 1].id + 1,
+        const news = JSON.parse(window.localStorage.getItem('news'))
+        const newNews = [...news, {
+            id: news[news.length - 1].id + 1,
             title,
             text,
-            creationDate: new Date(),
+            creationDate: Math.floor(new Date().getTime() / 1000),
             isApproved: false
         }]
         return newNews
     }),
-    map((o) => o? publishPostSuccess(o) : publishPostFailure('Не удалось опубликовать постчч')));
+    mergeMap(o => merge(
+        of(publishPostSuccess(o)),
+        of(loadNewsRequest())
+    )),
+    catchError(() => of(publishPostFailure('Не удалось опубликовать пост'))));
 
 export const approvePostEpic = (action$) => action$.pipe(
     filter(approvePostRequest.match),
@@ -65,7 +73,11 @@ export const approvePostEpic = (action$) => action$.pipe(
         window.localStorage.setItem('news', JSON.stringify(news))
         return news
     }),
-    map((o) => o === true ? approvePostSuccess() : approvePostFailure('Не удалось одобрить пост. Попробуйте еще раз.')));
+    mergeMap(o => merge(
+        of(approvePostSuccess(o)),
+        of(loadNewsRequest())
+    )),
+    catchError(() => of(approvePostFailure('Не удалось одобрить пост. Попробуйте еще раз.'))));
 
 export const deletePostEpic = (action$) => action$.pipe(
     filter(deletePostRequest.match),
@@ -76,15 +88,20 @@ export const deletePostEpic = (action$) => action$.pipe(
         window.localStorage.setItem('news', JSON.stringify(news))
         return news
     }),
-    map((o) => o ? deletePostSuccess() : deletePostFailure('Не удалось удалть пост. Попробуйте еще раз.')));
+    mergeMap(o => merge(
+        of(deletePostSuccess(o)),
+        of(loadNewsRequest())
+    )),
+    catchError(() => of(deletePostFailure('Не удалось удалить пост. Попробуйте еще раз.'))));
 
 export const loadNewsEpic = (action$, state$) => action$.pipe(
     filter(loadNewsRequest.match),
     delay(1000),
     map(() => {
         const lsNews = window.localStorage.getItem('news')
-        const news = lsNews ? JSON.parse(window.localStorage.getItem('news')) : NEWS
+        const news = lsNews ? JSON.parse(lsNews) : NEWS
         const q = state$.value.news.search.toLowerCase()
-        return !q ? news : news.filter(o => o.title.toLowerCase().includes(q) || o.text.toLowerCase().includes(q))
+        return !q ? news
+                  : news.filter(o => o.title.toLowerCase().includes(q) || o.text.toLowerCase().includes(q))
     }),
     map((o) => !!o.length ? loadNewsSuccess(o) : loadNewsFailure('Failed to load news')),);

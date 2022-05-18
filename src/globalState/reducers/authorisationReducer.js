@@ -45,6 +45,7 @@ export const authorisationReducer = createSlice({
                                                             const error = action.payload;
                                                             return state = {
                                                                 ...initialState,
+                                                                isAuthorised: false,
                                                                 showModal: true,
                                                                 error,
                                                             };

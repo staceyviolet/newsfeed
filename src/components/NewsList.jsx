@@ -8,7 +8,7 @@ import { NewsCard }                 from './NewsCard';
 import './newsList.scss'
 
 export function NewsList() {
-    const { isAuthorised, loginForm } = useSelector(state => state.authorisation);
+    const { isAuthorised } = useSelector(state => state.authorisation);
     const { news, loading, error } = useSelector(state => state.news);
 
     const dispatch = useDispatch()
@@ -27,8 +27,9 @@ export function NewsList() {
         return (
             <div className={'news-list'}>
                 {news.map(item => {
-                    return <NewsCard key={item.id} content={item} isAuthorised={isAuthorised}
-                                     isAdmin={loginForm.isAdmin}/>
+                    return <NewsCard key={item.id}
+                                     content={item}
+                                     />
                 })}
             </div>
         )
@@ -40,8 +41,7 @@ export function NewsList() {
                  .map(item => {
                      return <NewsCard key={Math.random()}
                                       content={item}
-                                      isAuthorised={isAuthorised}
-                                      isAdmin={loginForm.isAdmin}/>
+                                     />
                  })}
         </div>
     )

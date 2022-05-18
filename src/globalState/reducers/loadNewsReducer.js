@@ -30,10 +30,9 @@ export const loadNewsReducer = createSlice({
                                                    loadNewsSuccess(state, action) {
                                                        const news = action.payload;
                                                        window.localStorage.setItem('news', JSON.stringify(news));
-
                                                        return state = {
                                                            ...state,
-                                                           news,
+                                                           news: news.sort((a, b) => b.creationDate - a.creationDate) ,
                                                            loading: false,
                                                            error: null,
                                                        };

@@ -5,7 +5,16 @@
   padding: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 0 1rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  box-sizing: border-box;
+  min-height: 294px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   p {
     font-size: 12px
@@ -18,21 +27,43 @@
   &__header, &__footer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    //align-items: center;
+  }
+
+  &__header-title {
+    font-weight: 600;
+  }
+
+  &__header-date {
+    font-weight: 600;
+    color: #707070;
+    font-size: 12px;
+    white-space: nowrap;
   }
 
   &__body {
-    height: 105px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: left !important;
+    margin: 1rem 0;
+    font-size: 14px;
+  }
+  &__body-text {
+
+  }
+
+  &__body-collapse {
+    margin-left: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #ef7755;
   }
 
   &__footer {
+    margin-top: auto;
+
     button {
       cursor: pointer;
       border: none;
-      padding: 5px 10px;
+      height: 25px;
+      padding: 0 15px;
       border-radius: 4px;
       color: white;
       font-weight: 600;
@@ -46,6 +77,22 @@
       background: #e93f37;
     }
 
+  }
+
+  &__footer-approved {
+    font-weight: 600;
+    color: #08b95b;
+    i {
+      font-size: 16px;
+    }
+  }
+
+  &__footer-pending {
+    font-weight: 600;
+    color: #5082de;
+    i {
+      font-size: 16px;
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 export const USER_LOGIN = 'test@test.com'
 export const USER_PASSWORD = '123456'
 export const ADMIN_LOGIN = 'admin@test.com'
-export const ADMIN_PASSWORD = '123456'
+export const ADMIN_PASSWORD = '456789'
 export const NEWS = [
     {
         id: 1,

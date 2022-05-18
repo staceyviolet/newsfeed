@@ -11,6 +11,7 @@
     }
 
     input, textarea {
+      font-family: inherit;
       border: 1px #d3d3d3 solid;
       border-radius: 4px;
       background: #f8f8f8;
@@ -18,11 +19,6 @@
       line-height: 24px;
       color: #555555;
     }
-    ::placeholder {
-      font-family: unset !important;
-    }
-
-
   }
 
   &__checkbox {

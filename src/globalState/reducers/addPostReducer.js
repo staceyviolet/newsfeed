@@ -17,7 +17,7 @@ export const addPostReducer = createSlice({
                                                       const { name, value } = action.payload;
                                                       return state = { ...state, [name]: value }
                                                   },
-                                                  publishPostRequest(state, action) {
+                                                  publishPostRequest(state) {
                                                       return state = {
                                                           ...state,
                                                           loading: true,

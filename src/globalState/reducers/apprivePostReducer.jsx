@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+    id: 0,
     loading: false,
     error: null,
 };
@@ -9,9 +10,11 @@ export const approvePostReducer = createSlice({
                                                   name: 'approvePostReducer',
                                                   initialState: initialState,
                                                   reducers: {
-                                                      approvePostRequest(state) {
+                                                      approvePostRequest(state, action) {
+                                                          const id = action.payload
                                                           return state = {
                                                               ...state,
+                                                              id,
                                                               loading: true,
                                                               error: null,
                                                           };
@@ -35,6 +38,5 @@ export const approvePostReducer = createSlice({
 export const {
     approvePostRequest,
     approvePostFailure,
-    loadNewsSuccess,
     approvePostSuccess
 } = approvePostReducer.actions
