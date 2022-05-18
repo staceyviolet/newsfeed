@@ -1,6 +1,6 @@
-import { useEffect }                from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginRequest }             from '../globalState/reducers/authorisationReducer';
+import { useEffect }    from 'react';
+import { useDispatch }  from 'react-redux';
+import { loginRequest } from '../globalState/reducers/authorisationReducer';
 import { LoginForm }    from './LoginForm';
 import './loginModal.scss'
 

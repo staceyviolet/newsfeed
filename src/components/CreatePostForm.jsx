@@ -1,9 +1,8 @@
 import './createPost.scss'
 import { useDispatch, useSelector }              from 'react-redux';
 import { changePostDetails, publishPostRequest } from '../globalState/reducers/addPostReducer';
-import { loginRequest }                          from '../globalState/reducers/authorisationReducer';
 
-export function CreatePostForm({}) {
+export function CreatePostForm() {
 
     const { isAuthorised, loginForm } = useSelector(state => state.authorisation);
     const { title, text } = useSelector(state => state.post);

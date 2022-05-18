@@ -4,6 +4,7 @@ const initialState = {
     news: [],
     loading: false,
     error: null,
+    search: ''
 };
 
 export const loadNewsReducer = createSlice({

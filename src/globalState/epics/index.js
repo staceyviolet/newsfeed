@@ -3,7 +3,7 @@ import { LOGIN, NEWS, PASSWORD }                                      from '../.
 import { publishPostFailure, publishPostRequest, publishPostSuccess } from '../reducers/addPostReducer';
 import { approvePostFailure, approvePostRequest, approvePostSuccess } from '../reducers/apprivePostReducer';
 import {
-    loginFailure, loginRequest, loginSuccess, logoutFailure, logoutRequest, logoutSuccess,
+    loginFailure, loginRequest, loginSuccess, logoutRequest, logoutSuccess,
 }                                                                     from '../reducers/authorisationReducer';
 import { deletePostFailure, deletePostRequest, deletePostSuccess }    from '../reducers/deletePostReducer';
 import {
@@ -15,7 +15,7 @@ export const changeSearchEpic = action$ => action$.pipe(
     map(o => o.payload.trim()),
     filter(o => o !== ''),
     debounceTime(1000),
-    map(o => loadNewsEpic(o)))
+    map(o => loadNewsRequest(o)))
 
 export const loginEpic = (action$, state$) => action$.pipe(
     filter(loginRequest.match),
@@ -28,13 +28,13 @@ export const logoutEpic = action$ => action$.pipe(
     delay(1000),
     map(() => logoutSuccess()));
 
-export const publishPostEpic = (action$, state$) => action$.pipe(
+export const publishPostEpic = (action$) => action$.pipe(
     filter(publishPostRequest.match),
     map(o => o.payload),
     delay(1000),
     map((o) => o === true ? publishPostSuccess() : publishPostFailure('Login & Password are incorrect')));
 
-export const approvePostEpic = (action$, state$) => action$.pipe(
+export const approvePostEpic = (action$) => action$.pipe(
     filter(approvePostRequest.match),
     map(o => o.payload),
     delay(1000),
@@ -49,5 +49,9 @@ export const deletePostEpic = (action$, state$) => action$.pipe(
 export const loadNewsEpic = (action$, state$) => action$.pipe(
     filter(loadNewsRequest.match),
     delay(1000),
-    map(() => NEWS),
+    map(() => {
+        const q = state$.value.news.search.toLowerCase()
+        console.log(q)
+        return !q ? NEWS : NEWS.filter(o => o.title.toLowerCase().includes(q) || o.text.toLowerCase().includes(q))
+    }),
     map((o) => !!o.length ? loadNewsSuccess(o) : loadNewsFailure('Failed to load news')),);

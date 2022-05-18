@@ -15,8 +15,8 @@ export function NewsPage() {
 
     return (
         <div className={'news-page'}>
-            <NewsSearch/>
             <CreatePostForm/>
+            <NewsSearch/>
             <NewsList newsList={news}/>
         </div>
     )
