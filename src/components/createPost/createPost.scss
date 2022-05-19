@@ -1,12 +1,14 @@
+@import '../../constants';
+
 .create-post {
-  background: white;
-  padding: 1rem;
+  background: $white;
+  padding: 1.5rem;
   display: grid;
   margin: 0 1rem 1rem;
   border-radius: 4px;
   box-sizing: border-box;
   width: 100%;
-  border: 1px solid lightgrey;
+  border: 1px solid $border-color;
 
   &__send {
     display: flex;
@@ -16,9 +18,9 @@
       background: none;
       cursor: pointer;
       border: none;
-      background: #08b95b;
+      background: $green;
       font-weight: 600;
-      color: white;
+      color: $white;
       border-radius: 4px;
       padding: 10px 20px;
     }

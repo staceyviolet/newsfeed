@@ -1,0 +1,11 @@
+@import '../../constants';
+
+.error {
+  font-size: 14px;
+  background: $error-background;
+  color: $error-color;
+  padding: 10px;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}

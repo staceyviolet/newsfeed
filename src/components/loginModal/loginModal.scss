@@ -1,3 +1,5 @@
+@import '../../constants';
+
 .login-modal {
   &__background {
     position: fixed;
@@ -26,7 +28,7 @@
     width: 100%;
     box-sizing: border-box;
     max-width: 550px;
-    background: white;
+    background: $white;
     position: relative;
     border-radius: 4px;
     padding: 1.5rem;

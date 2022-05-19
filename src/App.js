@@ -1,13 +1,14 @@
 import { Provider }      from 'react-redux';
 import { Route, Routes } from 'react-router';
-import store             from './globalState/store';
 import { Body }          from './layout/Body';
 import { Content }       from './layout/Content';
 import { Footer }        from './layout/Footer';
 import { Header }        from './layout/Header';
 import { HomePage }      from './pages/HomePage';
 import { NewsPage }      from './pages/NewsPage';
+import store             from './globalState/store';
 import './assets/font-awesome-4.7.0/css/font-awesome.css'
+import  './App.scss'
 
 function App() {
     return (

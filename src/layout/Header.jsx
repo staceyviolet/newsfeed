@@ -1,9 +1,9 @@
 import { useEffect }                      from 'react';
 import { useDispatch, useSelector }       from 'react-redux';
-import { HeaderButton }                   from '../components/HeaderButton';
-import { LoginModal }                     from '../components/LoginModal';
-import { Logo }                           from '../components/Logo';
-import { TopMenu }                        from '../components/TopMenu';
+import { HeaderButton }                   from '../components/headerButton/HeaderButton';
+import { LoginModal }                     from '../components/loginModal/LoginModal';
+import { Logo }                           from '../components/logo/Logo';
+import { TopMenu }                        from '../components/topMenu/TopMenu';
 import { changeShowModal, logoutRequest } from '../globalState/reducers/authorisationReducer';
 import './header.scss'
 

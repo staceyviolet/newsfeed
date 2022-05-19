@@ -1,6 +1,6 @@
-import { CreatePostForm }  from '../components/CreatePostForm';
-import { NewsList }        from '../components/NewsList';
-import { NewsSearch }      from '../components/NewsSearch';
+import { CreatePostForm } from '../components/createPost/CreatePostForm';
+import { NewsList }       from '../components/newsList/NewsList';
+import { NewsSearch }     from '../components/newsSearch/NewsSearch';
 import './newsPage.scss'
 
 export function NewsPage() {

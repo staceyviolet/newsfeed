@@ -1,8 +1,9 @@
+@import '../../constants';
+
 .loader {
   font-size: 52px;
-  color: white;
+  color: $loader;
   justify-self: center;
   align-self: center;
-  height: 100%;
-  flex-grow: 1;
+  padding: 2rem 0;
 }

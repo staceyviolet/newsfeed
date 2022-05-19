@@ -31,9 +31,7 @@ export const addPostReducer = createSlice({
                                                           error,
                                                       };
                                                   },
-                                                  publishPostSuccess(state, action) {
-                                                      const news = action.payload
-                                                      window.localStorage.setItem('news', JSON.stringify(news));
+                                                  publishPostSuccess(state) {
                                                       return state = {
                                                           ...initialState,
                                                       };

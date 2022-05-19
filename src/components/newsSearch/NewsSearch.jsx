@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSearchField }        from '../globalState/reducers/loadNewsReducer';
+import { changeSearchField }        from '../../globalState/reducers/loadNewsReducer';
 import './newsSearch.scss'
 
 export function NewsSearch() {

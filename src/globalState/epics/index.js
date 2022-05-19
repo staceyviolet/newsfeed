@@ -1,7 +1,7 @@
 import { merge, of }                                                    from 'rxjs';
 import { map, debounceTime, filter, delay, mergeMap, catchError }       from 'rxjs/operators';
 import { publishPostFailure, publishPostRequest, publishPostSuccess }   from '../reducers/addPostReducer';
-import { approvePostFailure, approvePostRequest, approvePostSuccess }   from '../reducers/apprivePostReducer';
+import { approvePostFailure, approvePostRequest, approvePostSuccess }   from '../reducers/approvePostReducer';
 import {
     loginFailure, loginRequest, loginSuccess, logoutRequest, logoutSuccess,
 }                                                                       from '../reducers/authorisationReducer';
@@ -54,10 +54,11 @@ export const publishPostEpic = (action$, state$) => action$.pipe(
             creationDate: Math.floor(new Date().getTime() / 1000),
             isApproved: false
         }]
+        window.localStorage.setItem('news', JSON.stringify(newNews));
         return newNews
     }),
-    mergeMap(o => merge(
-        of(publishPostSuccess(o)),
+    mergeMap(() => merge(
+        of(publishPostSuccess()),
         of(loadNewsRequest())
     )),
     catchError(() => of(publishPostFailure('Не удалось опубликовать пост'))));
@@ -98,10 +99,12 @@ export const loadNewsEpic = (action$, state$) => action$.pipe(
     filter(loadNewsRequest.match),
     delay(1000),
     map(() => {
-        const lsNews = window.localStorage.getItem('news')
-        const news = lsNews ? JSON.parse(lsNews) : NEWS
+        const lsNews = JSON.parse(window.localStorage.getItem('news'))
+        let news = (Array.isArray(lsNews) && !!lsNews.length) ? lsNews : NEWS
         const q = state$.value.news.search.toLowerCase()
-        return !q ? news
+        news = !q ? news
                   : news.filter(o => o.title.toLowerCase().includes(q) || o.text.toLowerCase().includes(q))
+        !q && window.localStorage.setItem('news', JSON.stringify(news));
+        return news
     }),
     map((o) => !!o.length ? loadNewsSuccess(o) : loadNewsFailure('Failed to load news')),);

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { approvePostRequest }       from '../globalState/reducers/apprivePostReducer';
-import { deletePostRequest }        from '../globalState/reducers/deletePostReducer';
+import { approvePostRequest }       from '../../../globalState/reducers/approvePostReducer';
+import { deletePostRequest }        from '../../../globalState/reducers/deletePostReducer';
+import { Error }                    from '../../error/Error';
 
 export function NewsCardFooter({ content }) {
     const { isAuthorised, loginForm } = useSelector(state => state.authorisation);
@@ -24,6 +25,7 @@ export function NewsCardFooter({ content }) {
     }
 
     return (
+        <>
         <div className={'news-card__footer'}>
             {isApproved ? <p className={'news-card__footer-approved'}>
                             <i className={'fa fa-check'}></i>
@@ -43,5 +45,7 @@ export function NewsCardFooter({ content }) {
                                                   : <i className={'fa fa-trash'}></i>}
                 {` Удалить`}</button>
         </div>
+            {(deleteError || approveError) && <Error message={deleteError || approveError}/>}
+        </>
     )
 }

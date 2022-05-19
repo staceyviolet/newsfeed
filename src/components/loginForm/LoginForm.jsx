@@ -1,7 +1,7 @@
 import { useEffect, useState }              from 'react';
 import { useDispatch, useSelector }         from 'react-redux';
-import { changeLoginDetails, loginRequest } from '../globalState/reducers/authorisationReducer';
-import { Error }                            from './Error';
+import { changeLoginDetails, loginRequest } from '../../globalState/reducers/authorisationReducer';
+import { Error }                            from '../error/Error';
 import './loginForm.scss'
 
 export function LoginForm({ onClose }) {
@@ -35,7 +35,8 @@ export function LoginForm({ onClose }) {
             </div>
             <div className={'login-form__input'}>
                 <label htmlFor={'password'}>Пароль</label>
-                <input name={'password'} type={'password'} value={password} placeholder={'Введите пароль'} onChange={handleFormChange}
+                <input name={'password'} type={'password'} value={password} placeholder={'Введите пароль'}
+                       onChange={handleFormChange}
                        required/>
             </div>
             <div className={'login-form__checkbox'}>
@@ -47,7 +48,7 @@ export function LoginForm({ onClose }) {
 
             <div className="login-form__footer">
                 <button onClick={onClose}>Отмена</button>
-                <button type={'submit'} onClick={handleSubmit}>
+                <button type={'submit'}>
                     {loading && <i className={'fa fa-circle-o-notch fa-spin'}></i>}
                     {` Войти`}
                 </button>

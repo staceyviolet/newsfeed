@@ -1,6 +1,5 @@
 import { useState }       from 'react';
-import { NewsCardFooter } from './NewsCardFooter';
-
+import { NewsCardFooter } from './newsCardFooter/NewsCardFooter';
 import './newsCard.scss'
 
 export function NewsCard({ content }) {

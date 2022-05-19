@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { LoginForm } from './LoginForm';
 import './loginModal.scss'
+import { LoginForm } from '../loginForm/LoginForm';
 
 export const LoginModal = ({ visible, onClose }) => {
     const onKeydown = ({ key }) => {

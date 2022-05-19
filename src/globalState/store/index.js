@@ -5,9 +5,9 @@ import {
     approvePostEpic,
     changeSearchEpic, deletePostEpic, loadNewsEpic, loginEpic, logoutEpic, publishPostEpic,
 } from '../epics';
-import { addPostReducer }                     from '../reducers/addPostReducer';
-import { approvePostReducer }                 from '../reducers/apprivePostReducer';
-import { authorisationReducer }               from '../reducers/authorisationReducer';
+import { addPostReducer }       from '../reducers/addPostReducer';
+import { approvePostReducer }   from '../reducers/approvePostReducer';
+import { authorisationReducer } from '../reducers/authorisationReducer';
 import { deletePostReducer }                  from '../reducers/deletePostReducer';
 import { loadNewsReducer }                    from '../reducers/loadNewsReducer';
 

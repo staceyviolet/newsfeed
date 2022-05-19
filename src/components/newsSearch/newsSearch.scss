@@ -1,34 +1,36 @@
+@import '../../constants';
+
 .news-search {
   margin-bottom: 1rem;
   box-sizing: border-box;
   width: 100%;
-  background: white;
-  padding: 1rem 1rem 2rem;
+  background: $white;
+  padding: 1.5rem 1.5rem 2rem;
   border-radius: 4px;
-  border: 1px solid lightgrey;
+  border: 1px solid $border-color;
 
   &__input {
     width: 100%;
     box-sizing: border-box;
     border-radius: 20px;
     height: 40px;
-    border: 1px solid lightgrey;
+    border: 1px solid $border-color;
     padding: 0 20px;
     display: grid;
     grid-template-columns: 22fr 2fr;
-    background: #f8f8f8;
+    background: $input-background;
 
     input {
       border: none;
       background: transparent;
+      outline: none;
     }
 
     i {
-      cursor: pointer;
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      color: #555555;
+      color: $input-color;
       font-size: 18px;
     }
   }
